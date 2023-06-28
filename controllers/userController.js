@@ -63,6 +63,8 @@ module.exports = {
         _id: req.params.userId,
       });
 
+      await Thought.deleteMany({ _id: { $in: user.thoughts } });
+
       if (!user) {
         return res.status(404).json({ message: "No such user exists" });
       }
